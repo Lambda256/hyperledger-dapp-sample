@@ -1,71 +1,66 @@
-## Instructions
+## 使用方法
 
-Run the sample program of fabric-sdk-java by following the steps below
+通过如下步骤运行fabric-sdk-java的示例程序。 
 
-### Confirm Profile
+### 确认配置文件
 
-Copy the configuration file `connection-profile-standard.yaml` from the SDK package to the current directory.
+将SDK包中的配置文件 `connection-profile-standard.yaml` 复制到当前目录。
 
-### Install jar package
+### 安装 jar 包
 
-We have pre-downloaded the java-sdk 1.2.0 version of the jar package, located in the `lib` directory.
+我们已预先下载了java-sdk 1.2.0版本的jar包，位于 `lib` 目录下，
 
-`fabric-sdk-java-1.2.0-jar-with-dependencies.jar`: Contains fabric-sdk-java and all its dependencies.
-`fabric-sdk-java-1.2.0-sources.jar`: Contains the source code for fabric-sdk-java.
+`fabric-sdk-java-1.2.0-jar-with-dependencies.jar`: 包含了fabric-sdk-java和它的所有依赖。
+`fabric-sdk-java-1.2.0-sources.jar`: 包含了fabric-sdk-java的源码。
 
 
-Run the following command to install the jar package to the local maven repository:
+执行如下命令将jar包安装到本地maven仓库：
 ```
-Mvn install:install-file -Dfile=./lib/fabric-sdk-java-1.2.0-jar-with-dependencies.jar -DgroupId=org.hyperledger.fabric-sdk-java -DartifactId=fabric-sdk-java -Dversion=1.2.0 -Dpackaging=jar
-```
-
-If you need to read the fabric-sdk-java source, you can install the source package:
-
-```
-Mvn install:install-file -Dfile=./lib/fabric-sdk-java-1.2.0-sources.jar -DgroupId=org.hyperledger.fabric-sdk-java -DartifactId=fabric-sdk-java -Dversion=1.2 .0 -Dpackaging=jar -Dclassifier=sources
+mvn install:install-file -Dfile=./lib/fabric-sdk-java-1.2.0-jar-with-dependencies.jar -DgroupId=org.hyperledger.fabric-sdk-java -DartifactId=fabric-sdk-java -Dversion=1.2.0 -Dpackaging=jar
 ```
 
-### Deploying chain code
+若需要阅读fabric-sdk-java源码，可以安装源码包：
 
-Upload `sacc.out` from the chaincode directory to the BaaS platform and complete the installation and instantiation steps. For details, please refer to: https://help.aliyun.com/document_detail/85739.html
+```
+mvn install:install-file -Dfile=./lib/fabric-sdk-java-1.2.0-sources.jar -DgroupId=org.hyperledger.fabric-sdk-java -DartifactId=fabric-sdk-java -Dversion=1.2.0 -Dpackaging=jar -Dclassifier=sources
+```
 
-### Open project
+### 部署链码
 
-Open any IDE and import java project
+将 chaincode 目录中的 `sacc.out` 上传至 BaaS 平台，并完成安装、实例化步骤，具体方法请参考：https://help.aliyun.com/document_detail/85739.html
 
-Modify the contents of the `java-sdk-demo/src/main/java/com/aliyun/baas/Main.java` file to match your configuration.
+### 打开项目
+
+打开任意IDE，导入java项目
+
+修改`java-sdk-demo/src/main/java/com/aliyun/baas/Main.java` 文件中的内容以匹配您的配置
 
 ```java
-    Private static String channelName = "first-channel"; // channel name
-    Private static String userName = "user1"; // username
-    Private static String secret = "password"; // password
+    private static String channelName = "first-channel";  // 通道名称
+    private static String userName = "user1";             // 用户名
+    private static String secret = "password";            // 密码
 ```
 
-Execute the com.aliyun.baas.Main program.
-
-
-Copy the configuration file `connection-profile-standard.yaml` from the SDK package to the current directory.
-
+执行 com.aliyun.baas.Main 程序即可
 
 ```shell
 mvn compile
 mvn exec:java -Dexec.mainClass="com.aliyun.baas.Main"  -Dexec.classpathScope=runtime -Dexec.cleanupDaemonThreads=false
 ```
 
-## Sample Program Description
+## 示例程序说明
 
-The sample program does the following:
+该示例程序会执行如下操作：
 
-1. Enroll user
-2. Read the configuration file, connect to the channel-related peer, and listen for block events.
-3. Get the block information of the ledger and output
-4. Call the sacc smart contract, modify the ledger, and read
-5. Disconnect the peer
+1. Enroll 用户
+2. 读取配置文件，连接到channel相关的peer，并监听块事件。
+3. 获取账本的块信息并输出
+4. 调用 sacc 智能合约，修改账本，并读取
+5. 断开和peer的连接
 
-## operation result
+## 运行结果
 
-If the sample program runs successfully, you can observe output information similar to the following:
-
+如示例程序运行成功，可观察到类似如下的输出信息：
 
 ```
 11:05:14,362 INFO  - com.aliyun.baas.Main              - =============================================================
@@ -98,9 +93,9 @@ If the sample program runs successfully, you can observe output information simi
 [INFO] ------------------------------------------------------------------------
 ```
 
-## Problem Diagnosis
+## 问题诊断
 
-1. Error example: send proposal timeout failed
+1. 错误示例：send proposal超时失败
 
 ```
 20:23:45,728 ERROR - org.hyperledger.fabric.sdk.Channel - Channel Channel{id: 1, name: testchannel01} sending proposal with transaction 45bb66f204d45c19b36b4d0d2cc2871c6f2bf33c309961960364eda05b0a1e99 to Peer{ id: 5, name: peer1.aliorg.aliyunbaas.com:31111, channelName: testchannel01, url: grpcs://peer1.aliorg.aliyunbaas.com:31111} failed because of timeout(6000 milliseconds) expiration
@@ -124,12 +119,15 @@ java.util.concurrent.TimeoutException: Waited 6000 milliseconds for io.grpc.stub
 20:23:45,734 WARN  - com.aliyun.baas.ChaincodeExecuter - [×] Got failed response from peer peer1.aliorg.aliyunbaas.com:31111 => FAILURE: Channel Channel{id: 1, name: testchannel01} sending proposal with transaction 45bb66f204d45c19b36b4d0d2cc2871c6f2bf33c309961960364eda05b0a1e99 to Peer{ id: 5, name: peer1.aliorg.aliyunbaas.com:31111, channelName: testchannel01, url: grpcs://peer1.aliorg.aliyunbaas.com:31111} failed because of timeout(6000 milliseconds) expiration
 ```
 
-If you encounter an error similar to the above, the possible causes include a timeout between the client application and the peer service of the fabric network. The solution can be considered:
-- Check network connectivity between client applications and fabric network peer services
-- If the connection is over an external network or the network has a high latency, consider adjusting the `waitTime` value in `ChaincodeExecuter.java`
+如遇到类似上述的错误，可能的原因包括客户端应用程序与Fabric网络的peer服务通信超时。解决方法可考虑：
+- 检查客户端应用程序与Fabric网络peer服务间的网络连通性
+- 如连接是通过外部网络或网络延时较高，可考虑调整 `ChaincodeExecuter.java`中的 `waitTime` 数值
 
-## Reference link
-- [fabric-sdk-java official](https://github.com/hyperledger/fabric-sdk-java)
-- [sdk-java maven repository](http://central.maven.org/maven2/org/hyperledger/fabric-sdk-java/fabric-sdk-java/1.2.0/)
+
+
+## 参考链接
+
+- [fabric-sdk-java官方地址](https://github.com/hyperledger/fabric-sdk-java)
+- [sdk-java maven 仓库](http://central.maven.org/maven2/org/hyperledger/fabric-sdk-java/fabric-sdk-java/1.2.0/)
 
 
