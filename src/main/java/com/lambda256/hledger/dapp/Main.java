@@ -1,5 +1,5 @@
 /*
- *  Copyright 2018 Aliyun.com All Rights Reserved.
+ *  Copyright 2019 Lambda256.com All Rights Reserved.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  *  limitations under the License.
  */
 
-package com.aliyun.baas;
+package com.lambda256.hledger.dapp;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,8 +54,9 @@ public class Main {
     //private static String chaincodeName = "sacc";
     //private static String chaincodeVersion = "1.0.0";
     //private static String chaincodeName = "example02";
-    private static String chaincodeName = "mycc";
-    private static String chaincodeVersion = "0.0.1";
+    //private static String chaincodeVersion = "v1";
+    private static String chaincodeName = "mycc2";
+    private static String chaincodeVersion = "4.0";
 
     public static void main(String[] args) {
 
@@ -125,13 +126,19 @@ public class Main {
         ChaincodeExecuter executer = new ChaincodeExecuter(chaincodeName, chaincodeVersion);
 
         String newValue = String.valueOf(new Random().nextInt(1000));
-//        executer.executeTransaction(client, channel, true,"set", "baas", newValue);
-        executer.executeTransaction(client, channel, false,"query", "baas");
+        //executer.executeTransaction(client, channel, true,"set", "baas", newValue);
+        //executer.executeTransaction(client, channel, false,"query", "baas");
+        executer.executeTransaction(client, channel, true,"invoke", "a", "b", "10");
+        executer.executeTransaction(client, channel, false,"query", "a");
+        executer.executeTransaction(client, channel, false,"query", "b");
 
         lineBreak();
         newValue = String.valueOf(new Random().nextInt(1000));
-//        executer.executeTransaction(client, channel, true,"set", "baas", newValue);
-        executer.executeTransaction(client, channel, false,"query", "baas");
+        //executer.executeTransaction(client, channel, true,"set", "baas", newValue);
+        //executer.executeTransaction(client, channel, false,"query", "baas");
+        executer.executeTransaction(client, channel, true,"invoke", "b", "a", "10");
+        executer.executeTransaction(client, channel, false,"query", "a");
+        executer.executeTransaction(client, channel, false,"query", "b");
 
     }
     private static void printChannelInfo(HFClient client, Channel channel) throws

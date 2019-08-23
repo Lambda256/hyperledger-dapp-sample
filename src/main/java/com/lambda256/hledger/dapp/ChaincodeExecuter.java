@@ -1,5 +1,5 @@
 /*
- *  Copyright 2018 Aliyun.com All Rights Reserved.
+ *  Copyright 2019 Lambda256.com All Rights Reserved.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  *  limitations under the License.
  */
 
-package com.aliyun.baas;
+package com.lambda256.hledger.dapp;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Collection;

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2018 Aliyun.com All Rights Reserved.
+ *  Copyright 2019 Lambda256.com All Rights Reserved.
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  *  limitations under the License.
  */
 
-package com.aliyun.baas;
+package com.lambda256.hledger.dapp;
 
 import java.util.Set;
 
@@ -20,7 +20,7 @@ import org.hyperledger.fabric.sdk.Enrollment;
 import org.hyperledger.fabric.sdk.User;
 
 /**
- * User 是一个 Fabric 应用程序需要自行实现的接口。官方在测试用例中给出了一份示例代码：
+ * User Interface that a fabric application needs to implement on its own. The official sample code is given in the test case:：
  * fabric-sdk-java/src/test/java/org/hyperledger/fabric/sdkintegration/SampleUser.java
  */
 public class FabricUser implements User {
