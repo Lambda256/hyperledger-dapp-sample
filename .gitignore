@@ -1,0 +1,21 @@
+.DS_Store
+.gradle
+.idea
+*.class
+build
+bin
+
+# Log
+*.log
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+*.iml
+
+fabric-samples/bin
