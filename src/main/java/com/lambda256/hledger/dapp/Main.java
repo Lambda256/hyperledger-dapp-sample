@@ -55,8 +55,8 @@ public class Main {
     //private static String chaincodeVersion = "1.0.0";
     //private static String chaincodeName = "example02";
     //private static String chaincodeVersion = "v1";
-    private static String chaincodeName = "mycc2";
-    private static String chaincodeVersion = "4.0";
+    private static String chaincodeName = "mycc";
+    private static String chaincodeVersion = "1.0";
 
     public static void main(String[] args) {
 
@@ -126,8 +126,10 @@ public class Main {
         ChaincodeExecuter executer = new ChaincodeExecuter(chaincodeName, chaincodeVersion);
 
         String newValue = String.valueOf(new Random().nextInt(1000));
-        //executer.executeTransaction(client, channel, true,"set", "baas", newValue);
-        //executer.executeTransaction(client, channel, false,"query", "baas");
+        //executer.executeTransaction(client, channel, true,"set", "c", "100");
+        //executer.executeTransaction(client, channel, true,"set", "d", "100");
+        executer.executeTransaction(client, channel, false,"query", "c");
+
         executer.executeTransaction(client, channel, true,"invoke", "a", "b", "10");
         executer.executeTransaction(client, channel, false,"query", "a");
         executer.executeTransaction(client, channel, false,"query", "b");
@@ -136,6 +138,7 @@ public class Main {
         newValue = String.valueOf(new Random().nextInt(1000));
         //executer.executeTransaction(client, channel, true,"set", "baas", newValue);
         //executer.executeTransaction(client, channel, false,"query", "baas");
+
         executer.executeTransaction(client, channel, true,"invoke", "b", "a", "10");
         executer.executeTransaction(client, channel, false,"query", "a");
         executer.executeTransaction(client, channel, false,"query", "b");
