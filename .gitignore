@@ -4,6 +4,7 @@
 *.class
 build
 bin
+target
 
 # Log
 *.log
@@ -18,4 +19,5 @@ bin
 
 *.iml
 
-fabric-samples/bin
+connection-profile-standard.*
+
