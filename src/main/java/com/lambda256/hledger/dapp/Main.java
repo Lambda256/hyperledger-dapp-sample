@@ -46,15 +46,9 @@ public class Main {
     private static final long waitTime = 6000;
     private static String connectionProfilePath;
 
-    //private static String channelName = "first-channel";
-    //private static String channelName = "foo";
     private static String channelName = "mychannel";
     private static String userName = "admin";
     private static String secret = "adminpw";
-    //private static String chaincodeName = "sacc";
-    //private static String chaincodeVersion = "1.0.0";
-    //private static String chaincodeName = "example02";
-    //private static String chaincodeVersion = "v1";
     private static String chaincodeName = "mycc";
     private static String chaincodeVersion = "1.0";
 
