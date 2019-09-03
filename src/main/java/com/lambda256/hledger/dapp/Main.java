@@ -54,7 +54,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        connectionProfilePath = /*System.getProperty("user.dir")+ */"/Users/christin/work/java-sdk-demo/connection-profile-standard.yaml";
+        connectionProfilePath = /*System.getProperty("user.dir")+ */"./connection-profile-standard.yaml";
         File f = new File(connectionProfilePath);
         try {
             javax.net.ssl.HttpsURLConnection.setDefaultHostnameVerifier(
@@ -69,13 +69,6 @@ public class Main {
             NetworkConfig networkConfig = NetworkConfig.fromYamlFile(f);
             NetworkConfig.OrgInfo clientOrg = networkConfig.getClientOrganization();
             NetworkConfig.CAInfo caInfo = clientOrg.getCertificateAuthorities().get(0);
-
-            System.out.println("org " + clientOrg.getMspId());
-            System.out.println("org " + clientOrg.getPeerAdmin().getAccount());
-            System.out.println("org " + clientOrg.getName());
-            System.out.println("caInfo " + caInfo.getName());
-            System.out.println("caInfo " + caInfo.getCAName());
-            System.out.println("caInfo " + caInfo.getHttpOptions());
 
             FabricUser user = getFabricUser(clientOrg, caInfo);
 
@@ -120,22 +113,17 @@ public class Main {
         ChaincodeExecuter executer = new ChaincodeExecuter(chaincodeName, chaincodeVersion);
 
         String newValue = String.valueOf(new Random().nextInt(1000));
-        //executer.executeTransaction(client, channel, true,"set", "c", "100");
-        //executer.executeTransaction(client, channel, true,"set", "d", "100");
-        executer.executeTransaction(client, channel, false,"query", "c");
+
+        executer.executeTransaction(client, channel, true,"invoke", "b", "a", "10");
+        executer.executeTransaction(client, channel, false,"query", "a");
+        executer.executeTransaction(client, channel, false,"query", "b");
+
+        lineBreak();
 
         executer.executeTransaction(client, channel, true,"invoke", "a", "b", "10");
         executer.executeTransaction(client, channel, false,"query", "a");
         executer.executeTransaction(client, channel, false,"query", "b");
 
-        lineBreak();
-        newValue = String.valueOf(new Random().nextInt(1000));
-        //executer.executeTransaction(client, channel, true,"set", "baas", newValue);
-        //executer.executeTransaction(client, channel, false,"query", "baas");
-
-        executer.executeTransaction(client, channel, true,"invoke", "b", "a", "10");
-        executer.executeTransaction(client, channel, false,"query", "a");
-        executer.executeTransaction(client, channel, false,"query", "b");
 
     }
     private static void printChannelInfo(HFClient client, Channel channel) throws

@@ -10,8 +10,8 @@ Copy the configuration file `connection-profile-standard.yaml` from the SDK pack
 
 We have pre-downloaded the java-sdk 1.2.0 version of the jar package, located in the `lib` directory.
 
-`fabric-sdk-java-1.2.0-jar-with-dependencies.jar`: Contains fabric-sdk-java and all its dependencies.
-`fabric-sdk-java-1.2.0-sources.jar`: Contains the source code for fabric-sdk-java.
+`fabric-sdk-java-1.4.0-jar-with-dependencies.jar`: Contains fabric-sdk-java and all its dependencies.
+`fabric-sdk-java-1.4.0-sources.jar`: Contains the source code for fabric-sdk-java.
 
 
 Run the following command to install the jar package to the local maven repository:
@@ -25,15 +25,11 @@ If you need to read the fabric-sdk-java source, you can install the source packa
 Mvn install:install-file -Dfile=./lib/fabric-sdk-java-1.2.0-sources.jar -DgroupId=org.hyperledger.fabric-sdk-java -DartifactId=fabric-sdk-java -Dversion=1.2 .0 -Dpackaging=jar -Dclassifier=sources
 ```
 
-### Deploying chain code
-
-Upload `sacc.out` from the chaincode directory to the BaaS platform and complete the installation and instantiation steps. For details, please refer to: https://help.aliyun.com/document_detail/85739.html
-
 ### Open project
 
 Open any IDE and import java project
 
-Modify the contents of the `java-sdk-demo/src/main/java/com/aliyun/baas/Main.java` file to match your configuration.
+Modify the contents of the `java-sdk-demo/src/main/java/com/lambda256/hledger/dapp/Main.java` file to match your configuration.
 
 ```java
     Private static String channelName = "first-channel"; // channel name
@@ -68,34 +64,48 @@ If the sample program runs successfully, you can observe output information simi
 
 
 ```
-11:05:14,362 INFO  - Main              - =============================================================
-11:05:14,418 INFO  - ChaincodeExecuter - [√] Got success response from peer peer2.aliorg.aliyunbaas.com:31121 => payload: 235
-11:05:14,418 INFO  - ChaincodeExecuter - [√] Got success response from peer peer1.aliorg.aliyunbaas.com:31111 => payload: 235
-11:05:14,418 INFO  - ChaincodeExecuter - Sending transaction to orderers...
-11:05:16,976 INFO  - Main              - Receive block event (number 16) from Peer{ id: 5, name: peer1.aliorg.aliyunbaas.com:31111, channelName: testchannel01, url: grpcs://peer1.aliorg.aliyunbaas.com:31111}
-11:05:16,979 INFO  - Main              - Receive block event (number 16) from Peer{ id: 6, name: peer2.aliorg.aliyunbaas.com:31121, channelName: testchannel01, url: grpcs://peer2.aliorg.aliyunbaas.com:31121}
-11:05:16,980 INFO  - ChaincodeExecuter - Orderer response: txid23197603990e6f8482e01ed6aeb1a9e6294b8937b9522f18f3474a5f7381c510
-11:05:16,980 INFO  - ChaincodeExecuter - Orderer response: block number: 16
-11:05:17,036 INFO  - ChaincodeExecuter - [√] Got success response from peer peer2.aliorg.aliyunbaas.com:31121 => payload: 235
-11:05:17,036 INFO  - ChaincodeExecuter - [√] Got success response from peer peer1.aliorg.aliyunbaas.com:31111 => payload: 235
-11:05:17,036 INFO  - Main              - =============================================================
-11:05:17,088 INFO  - ChaincodeExecuter - [√] Got success response from peer peer2.aliorg.aliyunbaas.com:31121 => payload: 882
-11:05:17,089 INFO  - ChaincodeExecuter - [√] Got success response from peer peer1.aliorg.aliyunbaas.com:31111 => payload: 882
-11:05:17,089 INFO  - ChaincodeExecuter - Sending transaction to orderers...
-11:05:19,351 INFO  - Main              - Receive block event (number 17) from Peer{ id: 5, name: peer1.aliorg.aliyunbaas.com:31111, channelName: testchannel01, url: grpcs://peer1.aliorg.aliyunbaas.com:31111}
-11:05:19,354 INFO  - Main              - Receive block event (number 17) from Peer{ id: 6, name: peer2.aliorg.aliyunbaas.com:31121, channelName: testchannel01, url: grpcs://peer2.aliorg.aliyunbaas.com:31121}
-11:05:19,354 INFO  - ChaincodeExecuter - Orderer response: txidffdaf80944641184175a0506460cffa3bda21200f477a4b853bed546c3326338
-11:05:19,354 INFO  - ChaincodeExecuter - Orderer response: block number: 17
-11:05:19,414 INFO  - ChaincodeExecuter - [√] Got success response from peer peer2.aliorg.aliyunbaas.com:31121 => payload: 882
-11:05:19,414 INFO  - ChaincodeExecuter - [√] Got success response from peer peer1.aliorg.aliyunbaas.com:31111 => payload: 882
-11:05:19,414 INFO  - Main              - Shutdown channel.
-11:05:19,420 INFO  - org.hyperledger.fabric.sdk.Channel - Channel testchannel01 eventThread shutting down. shutdown: true  thread: pool-1-thread-1
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  10.747 s
-[INFO] Finished at: 2019-07-17T11:05:19+08:00
-[INFO] ------------------------------------------------------------------------
+12:54:51,033 INFO  - com.lambda256.hledger.dapp.Main   - =============================================================
+12:54:51,033 INFO  - com.lambda256.hledger.dapp.Main   - CA name: ca-org1
+12:54:51,033 INFO  - com.lambda256.hledger.dapp.Main   - CA version: 1.4.2
+12:54:51,034 INFO  - com.lambda256.hledger.dapp.Main   - Going to enroll user: admin
+12:54:51,361 INFO  - com.lambda256.hledger.dapp.Main   - Enroll user: admin successfully.
+12:54:52,755 INFO  - org.hyperledger.fabric.sdk.Channel - Channel Channel{id: 1, name: mychannel} eventThread started shutdown: false  thread: null 
+12:54:52,755 INFO  - com.lambda256.hledger.dapp.Main   - =============================================================
+12:54:52,759 INFO  - com.lambda256.hledger.dapp.Main   - Receive block event (number 5) from Peer{ id: 4, name: peer1.org1.example.com, channelName: mychannel, url: grpcs://rooin-6456326796789179455.luniverse.dev:8051}
+12:54:52,760 INFO  - com.lambda256.hledger.dapp.Main   - Receive block event (number 5) from Peer{ id: 3, name: peer0.org1.example.com, channelName: mychannel, url: grpcs://rooin-6456326796789179455.luniverse.dev:7051}
+12:54:52,816 INFO  - com.lambda256.hledger.dapp.Main   - Channel height: 6
+12:54:52,834 INFO  - com.lambda256.hledger.dapp.Main   - Block #5 has previous hash id: a9e2e0af2a941080a9db52bac19fbd63be8ca6d11124e9f7661821bc04b17a43
+12:54:52,834 INFO  - com.lambda256.hledger.dapp.Main   - Block #5 has data hash: 55153a1ea8ec64e2afa651b45eead1a1d266b3f4a3a350a5fe90ac9359a9b8be
+12:54:52,837 INFO  - com.lambda256.hledger.dapp.Main   - Block #5 has calculated block hash is d61eac2db549db7f1453cee9370527481953972b27084e075fe21f8881a69cf1
+12:54:52,859 INFO  - com.lambda256.hledger.dapp.Main   - Block #4 has previous hash id: 461793806fb096700dc960003a57de5ef2b37f7f617bab7bd770df63bbe7b234
+12:54:52,860 INFO  - com.lambda256.hledger.dapp.Main   - Block #4 has data hash: aa2ee354eb79fd4ed5ce17a9f7a73e088b4670b78721d33c5d1cc61a25b6a178
+12:54:52,860 INFO  - com.lambda256.hledger.dapp.Main   - Block #4 has calculated block hash is a9e2e0af2a941080a9db52bac19fbd63be8ca6d11124e9f7661821bc04b17a43
+12:54:52,879 INFO  - com.lambda256.hledger.dapp.Main   - Block #3 has previous hash id: be503a6f98a51836d43b13ac1241a991903906e2920d701a8b80cd4588e82105
+12:54:52,879 INFO  - com.lambda256.hledger.dapp.Main   - Block #3 has data hash: 278fc58e497ae16d2c57a610d2c58888a95815e3d61c7e299acfeff070c91a27
+12:54:52,879 INFO  - com.lambda256.hledger.dapp.Main   - Block #3 has calculated block hash is 461793806fb096700dc960003a57de5ef2b37f7f617bab7bd770df63bbe7b234
+12:54:52,897 INFO  - com.lambda256.hledger.dapp.Main   - Block #2 has previous hash id: 98f0728aebc5d54021800a949ce144a930539962e8d0bef33da44f19ba2d5f0b
+12:54:52,897 INFO  - com.lambda256.hledger.dapp.Main   - Block #2 has data hash: 1744ee2fd367d5f5676b0c787559b4edd1e1be0098b8a7cea2eda22e29888ee5
+12:54:52,897 INFO  - com.lambda256.hledger.dapp.Main   - Block #2 has calculated block hash is be503a6f98a51836d43b13ac1241a991903906e2920d701a8b80cd4588e82105
+12:54:52,940 INFO  - com.lambda256.hledger.dapp.Main   - Block #1 has previous hash id: 57d5ab8ce8386d9b828006808c7cc0ce3bbb097faccef95c797ea53b11e0e942
+12:54:52,940 INFO  - com.lambda256.hledger.dapp.Main   - Block #1 has data hash: cb57ea7543bcf6ea5bb35efea0dbbbf56e3ecaad99e3caa1df152bcfa8b2452b
+12:54:52,940 INFO  - com.lambda256.hledger.dapp.Main   - Block #1 has calculated block hash is 98f0728aebc5d54021800a949ce144a930539962e8d0bef33da44f19ba2d5f0b
+12:54:52,963 INFO  - com.lambda256.hledger.dapp.Main   - Block #0 has previous hash id: 
+12:54:52,963 INFO  - com.lambda256.hledger.dapp.Main   - Block #0 has data hash: 268d02bb425cfe543440ed1c6080a2f5f37b9c8c3c2c3396a825be52022c3f72
+12:54:52,963 INFO  - com.lambda256.hledger.dapp.Main   - Block #0 has calculated block hash is 57d5ab8ce8386d9b828006808c7cc0ce3bbb097faccef95c797ea53b11e0e942
+12:54:52,963 INFO  - com.lambda256.hledger.dapp.Main   - =============================================================
+12:54:53,010 INFO  - com.lambda256.hledger.dapp.ChaincodeExecuter - [√] Got success response from peer peer1.org1.example.com => payload: 
+12:54:53,010 INFO  - com.lambda256.hledger.dapp.ChaincodeExecuter - [√] Got success response from peer peer0.org1.example.com => payload: 
+12:54:53,010 INFO  - com.lambda256.hledger.dapp.ChaincodeExecuter - Sending transaction to orderers...
+12:54:55,169 INFO  - com.lambda256.hledger.dapp.Main   - Receive block event (number 6) from Peer{ id: 4, name: peer1.org1.example.com, channelName: mychannel, url: grpcs://rooin-6456326796789179455.luniverse.dev:8051}
+12:54:55,169 INFO  - com.lambda256.hledger.dapp.Main   - Receive block event (number 6) from Peer{ id: 3, name: peer0.org1.example.com, channelName: mychannel, url: grpcs://rooin-6456326796789179455.luniverse.dev:7051}
+12:54:55,170 INFO  - com.lambda256.hledger.dapp.ChaincodeExecuter - Orderer response: txidacae6427d9116fd9acfd5b5aadc702b89ae1a8e085e243d51d24f48d9595f852
+12:54:55,170 INFO  - com.lambda256.hledger.dapp.ChaincodeExecuter - Orderer response: block number: 6
+12:54:55,194 INFO  - com.lambda256.hledger.dapp.ChaincodeExecuter - [√] Got success response from peer peer1.org1.example.com => payload: 140
+12:54:55,194 INFO  - com.lambda256.hledger.dapp.ChaincodeExecuter - [√] Got success response from peer peer0.org1.example.com => payload: 140
+12:54:55,218 INFO  - com.lambda256.hledger.dapp.ChaincodeExecuter - [√] Got success response from peer peer1.org1.example.com => payload: 160
+12:54:55,219 INFO  - com.lambda256.hledger.dapp.ChaincodeExecuter - [√] Got success response from peer peer0.org1.example.com => payload: 160
+12:54:55,219 INFO  - com.lambda256.hledger.dapp.Main   - Shutdown channel.
+12:54:55,222 INFO  - org.hyperledger.fabric.sdk.Channel - Channel mychannel eventThread shutting down. shutdown: true  thread: pool-1-thread-1 
 ```
 
 ## Problem Diagnosis
