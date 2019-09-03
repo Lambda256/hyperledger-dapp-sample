@@ -71,8 +71,8 @@ If the sample program runs successfully, you can observe output information simi
 12:54:51,361 INFO  - com.lambda256.hledger.dapp.Main   - Enroll user: admin successfully.
 12:54:52,755 INFO  - org.hyperledger.fabric.sdk.Channel - Channel Channel{id: 1, name: mychannel} eventThread started shutdown: false  thread: null 
 12:54:52,755 INFO  - com.lambda256.hledger.dapp.Main   - =============================================================
-12:54:52,759 INFO  - com.lambda256.hledger.dapp.Main   - Receive block event (number 5) from Peer{ id: 4, name: peer1.org1.example.com, channelName: mychannel, url: grpcs://rooin-6456326796789179455.luniverse.dev:8051}
-12:54:52,760 INFO  - com.lambda256.hledger.dapp.Main   - Receive block event (number 5) from Peer{ id: 3, name: peer0.org1.example.com, channelName: mychannel, url: grpcs://rooin-6456326796789179455.luniverse.dev:7051}
+12:54:52,759 INFO  - com.lambda256.hledger.dapp.Main   - Receive block event (number 5) from Peer{ id: 4, name: peer1.org1.example.com, channelName: mychannel, url: grpcs://test-6456326796789179455.luniverse.dev:8051}
+12:54:52,760 INFO  - com.lambda256.hledger.dapp.Main   - Receive block event (number 5) from Peer{ id: 3, name: peer0.org1.example.com, channelName: mychannel, url: grpcs://test-6456326796789179455.luniverse.dev:7051}
 12:54:52,816 INFO  - com.lambda256.hledger.dapp.Main   - Channel height: 6
 12:54:52,834 INFO  - com.lambda256.hledger.dapp.Main   - Block #5 has previous hash id: a9e2e0af2a941080a9db52bac19fbd63be8ca6d11124e9f7661821bc04b17a43
 12:54:52,834 INFO  - com.lambda256.hledger.dapp.Main   - Block #5 has data hash: 55153a1ea8ec64e2afa651b45eead1a1d266b3f4a3a350a5fe90ac9359a9b8be
@@ -96,8 +96,8 @@ If the sample program runs successfully, you can observe output information simi
 12:54:53,010 INFO  - com.lambda256.hledger.dapp.ChaincodeExecuter - [√] Got success response from peer peer1.org1.example.com => payload: 
 12:54:53,010 INFO  - com.lambda256.hledger.dapp.ChaincodeExecuter - [√] Got success response from peer peer0.org1.example.com => payload: 
 12:54:53,010 INFO  - com.lambda256.hledger.dapp.ChaincodeExecuter - Sending transaction to orderers...
-12:54:55,169 INFO  - com.lambda256.hledger.dapp.Main   - Receive block event (number 6) from Peer{ id: 4, name: peer1.org1.example.com, channelName: mychannel, url: grpcs://rooin-6456326796789179455.luniverse.dev:8051}
-12:54:55,169 INFO  - com.lambda256.hledger.dapp.Main   - Receive block event (number 6) from Peer{ id: 3, name: peer0.org1.example.com, channelName: mychannel, url: grpcs://rooin-6456326796789179455.luniverse.dev:7051}
+12:54:55,169 INFO  - com.lambda256.hledger.dapp.Main   - Receive block event (number 6) from Peer{ id: 4, name: peer1.org1.example.com, channelName: mychannel, url: grpcs://test-6456326796789179455.luniverse.dev:8051}
+12:54:55,169 INFO  - com.lambda256.hledger.dapp.Main   - Receive block event (number 6) from Peer{ id: 3, name: peer0.org1.example.com, channelName: mychannel, url: grpcs://test-6456326796789179455.luniverse.dev:7051}
 12:54:55,170 INFO  - com.lambda256.hledger.dapp.ChaincodeExecuter - Orderer response: txidacae6427d9116fd9acfd5b5aadc702b89ae1a8e085e243d51d24f48d9595f852
 12:54:55,170 INFO  - com.lambda256.hledger.dapp.ChaincodeExecuter - Orderer response: block number: 6
 12:54:55,194 INFO  - com.lambda256.hledger.dapp.ChaincodeExecuter - [√] Got success response from peer peer1.org1.example.com => payload: 140
@@ -113,7 +113,7 @@ If the sample program runs successfully, you can observe output information simi
 1. Error example: send proposal timeout failed
 
 ```
-20:23:45,728 ERROR - org.hyperledger.fabric.sdk.Channel - Channel Channel{id: 1, name: testchannel01} sending proposal with transaction 45bb66f204d45c19b36b4d0d2cc2871c6f2bf33c309961960364eda05b0a1e99 to Peer{ id: 5, name: peer1.aliorg.aliyunbaas.com:31111, channelName: testchannel01, url: grpcs://peer1.aliorg.aliyunbaas.com:31111} failed because of timeout(6000 milliseconds) expiration
+20:23:45,728 ERROR - org.hyperledger.fabric.sdk.Channel - Channel Channel{id: 1, name: mychannel} sending proposal with transaction 45bb66f204d45c19b36b4d0d2cc2871c6f2bf33c309961960364eda05b0a1e99 to Peer{ id: 5, name: peer1.example.com:7051, channelName: mychannel, url: grpcs://peer1.example.com:7051} failed because of timeout(6000 milliseconds) expiration
 java.util.concurrent.TimeoutException: Waited 6000 milliseconds for io.grpc.stub.ClientCalls$GrpcFuture@b660793[status=PENDING, info=[GrpcFuture{clientCall={delegate={delegate=ClientCallImpl{method=MethodDescriptor{fullMethodName=protos.Endorser/ProcessProposal, type=UNARY, idempotent=false, safe=false, sampledToLocalTracing=true, requestMarshaller=io.grpc.protobuf.lite.ProtoLiteUtils$MessageMarshaller@7fd71cf, responseMarshaller=io.grpc.protobuf.lite.ProtoLiteUtils$MessageMarshaller@4f796e35, schemaDescriptor=org.hyperledger.fabric.protos.peer.EndorserGrpc$EndorserMethodDescriptorSupplier@5a101a3}}}}}]]
 	at com.google.common.util.concurrent.AbstractFuture.get(AbstractFuture.java:471)
 	at org.hyperledger.fabric.sdk.Channel.sendProposalToPeers(Channel.java:4108)
@@ -131,7 +131,7 @@ java.util.concurrent.TimeoutException: Waited 6000 milliseconds for io.grpc.stub
 ```
 
 ```
-20:23:45,734 WARN  - ChaincodeExecuter - [×] Got failed response from peer peer1.aliorg.aliyunbaas.com:31111 => FAILURE: Channel Channel{id: 1, name: testchannel01} sending proposal with transaction 45bb66f204d45c19b36b4d0d2cc2871c6f2bf33c309961960364eda05b0a1e99 to Peer{ id: 5, name: peer1.aliorg.aliyunbaas.com:31111, channelName: testchannel01, url: grpcs://peer1.aliorg.aliyunbaas.com:31111} failed because of timeout(6000 milliseconds) expiration
+20:23:45,734 WARN  - ChaincodeExecuter - [×] Got failed response from peer peer1.example.com:7051 => FAILURE: Channel Channel{id: 1, name: mychannel} sending proposal with transaction 45bb66f204d45c19b36b4d0d2cc2871c6f2bf33c309961960364eda05b0a1e99 to Peer{ id: 5, name: peer1.example.com:7051, channelName: mychannel, url: grpcs://peer1.example.com:7051} failed because of timeout(6000 milliseconds) expiration
 ```
 
 If you encounter an error similar to the above, the possible causes include a timeout between the client application and the peer service of the fabric network. The solution can be considered:
